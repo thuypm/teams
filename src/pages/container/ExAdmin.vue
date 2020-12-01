@@ -10,7 +10,11 @@
       <ListEx
         :listEx="listEx"
         :admin="true"
-        @newEx="createEx = true ; selectedEx={}; allSubmission=[]"
+        @newEx="
+          createEx = true;
+          selectedEx = {};
+          allSubmission = [];
+        "
         @selectEx="selectEx"
       />
       <ListSubmit
@@ -18,18 +22,18 @@
         :allSubmission="allSubmission"
         :admin="true"
         @editEx="createEx = true"
-                @select-submit="selectSubmit"
+        @select-submit="selectSubmit"
       />
-      <Mark  :admin="true" :selectedSubmit="selectedSubmit"/>
+      <Mark v-show="selectedSubmit" :admin="true" :selectedSubmit="selectedSubmit"  />
     </div>
   </div>
 </template>
 <script>
 import axios from "axios";
-import ExModal from "./groupModal/exModal";
-import ListEx from "./exercise/ListEx";
-import ListSubmit from "./exercise/ListSubmit";
-import Mark from "./exercise/Mark";
+import ExModal from "../../components/groupModal/exModal";
+import ListEx from "../../components/exercise/ListEx";
+import ListSubmit from "../../components/exercise/ListSubmit";
+import Mark from "../../components/exercise/Mark";
 export default {
   components: {
     ExModal,
@@ -48,9 +52,8 @@ export default {
         },
       },
       username: localStorage.username,
-      selectedSubmit: {},
-      selectedEx: {
-      },
+      selectedSubmit: null,
+      selectedEx: {},
       listEx: [],
       allSubmission: {},
     };
@@ -59,17 +62,21 @@ export default {
     this.loadData();
   },
   methods: {
-        selectSubmit(subm, id)
-    {
+    selectSubmit(subm, id) {
       this.selectedSubmit = subm;
     },
     selectEx(ex, id) {
       this.selectedEx = ex;
       // console.log(ex.exId)
+      this.selectedSubmit=null;
       axios
         .post(
           "http://thuypm.tk:3000/ex/getEX",
-          { _id: ex.exId, username: this.username, roomId: this.$route.params.id},
+          {
+            _id: ex.exId,
+            username: this.username,
+            roomId: this.$route.params.id,
+          },
           this.axiosConfig
         )
         .then((res) => {

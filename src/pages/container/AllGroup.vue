@@ -81,10 +81,10 @@
     </div>
 </template>
 <script>
-import editGroup from "./groupModal/editGroup";
+import editGroup from "../../components/groupModal/editGroup";
 import axios from "axios";
-import confirmModal from "./groupModal/confirmModal";
-import topNotice from "./notice/topNotice";
+import confirmModal from "../../components/groupModal/confirmModal";
+import topNotice from "../../components/notice/topNotice";
 
 export default {
   components: {

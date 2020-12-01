@@ -8,7 +8,7 @@ import Loading from "vue-loading-overlay";
 import "vue-loading-overlay/dist/vue-loading.css";
 
 Vue.config.productionTip = false
-Vue.component('loading', Loading)
+Vue.component('Loading', Loading)
 /* eslint-disable no-new */
 new Vue({
   el: '#app',

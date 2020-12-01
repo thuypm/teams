@@ -1,17 +1,17 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import index from '@/pages/index'
-import chat from '@/components/chat'
-import signin from '@/pages/signin'
-import allGroup from '@/components/allGroup'
-import signup from '@/pages/signup'
-import file from '@/components/file'
-import meeting from '@/components/meeting'
-import notification from '@/components/notification'
-import exercise from '@/components/exercise'
-import exStudent from '@/components/exStudent'
-import exAdmin from '@/components/exAdmin'
-import error from '@/components/error'
+import Index from '@/pages/Index'
+import Chat from '@/pages/container/Chat'
+import Signin from '@/pages/Signin'
+import AllGroup from '@/pages/container/AllGroup'
+import Signup from '@/pages/Signup'
+import File from '@/pages/container/File'
+import Meeting from '@/pages/container/Meeting'
+import Notification from '@/pages/container/Notification'
+import Exercise from '@/pages/container/Exercise'
+import ExStudent from '@/pages/container/ExStudent'
+import ExAdmin from '@/pages/container/ExAdmin'
+import Error from '@/pages/container/Error'
 
 Vue.use(Router)
 
@@ -20,74 +20,69 @@ const router = new Router({
   routes: [
     {
       path: '/',
-      component: index,
+      component: Index,
       redirect: "/allGroup",
-      children: 
-      [
-        // {
-        //   path: '',
-        //   name: 'index',
-        //   component: allGroup
-        // },
-        {
-          path: 'chat',
-          name: 'chat',
-          component: chat
-        },
-    
-        {
-          path: 'allGroup',
-          name: 'allGroup',
-          component: allGroup
-        },
-    
-        {
-          path: 'file',
-          name: 'file',
-          component: file
-        },
-        {
-          path: 'notification',
-          name: 'notification',
-          component: notification
-        },
-        {
-          path: 'exercise',
-          name: 'exercise',
-          component: exercise
-        },
-        {
-          path: 'meeting/:id',
-          name: 'meeting',
-          component: meeting
-        },
-        {
-          path: 'exStudent/:id',
-          name: 'Exercise',
-          component: exStudent
-        },
-        {
-          path: 'exAdmin/:id',
-          name: 'Manage',
-          component: exAdmin
-        },
-      ]
+      children:
+        [
+          {
+            path: 'chat',
+            name: 'chat',
+            component: Chat
+          },
+
+          {
+            path: 'allGroup',
+            name: 'allGroup',
+            component: AllGroup
+          },
+
+          {
+            path: 'file',
+            name: 'file',
+            component: File
+          },
+          {
+            path: 'notification',
+            name: 'notification',
+            component: Notification
+          },
+          {
+            path: 'exercise',
+            name: 'exercise',
+            component: Exercise
+          },
+          {
+            path: 'meeting/:id',
+            name: 'meeting',
+            component: Meeting
+          },
+          {
+            path: 'exStudent/:id',
+            name: 'Exercise',
+            component: ExStudent
+          },
+          {
+            path: 'exAdmin/:id',
+            name: 'Manage',
+            component: ExAdmin
+          },
+        ]
     },
-    
+
     {
       path: '/signin',
       name: 'signin',
-      component: signin
+      component: Signin
     },
     {
       path: '/signup',
       name: 'signup',
-      component: signup
+      component: Signup
     },
     {
       path: '*',
       name: 'error',
-      component: error
+      component: Error
     },
   ],
 

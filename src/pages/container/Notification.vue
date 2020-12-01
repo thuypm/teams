@@ -51,9 +51,6 @@ export default {
 	  }
   },
   created() {
-	  // axios.post("http://thuypm.tk:3000/user/checkAllNotice",   { username: this.username },
-		// this.axiosConfig);
-		
     axios
       .post(
         "http://thuypm.tk:3000/user/getUser",

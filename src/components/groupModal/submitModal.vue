@@ -3,13 +3,13 @@
 </style>
 <template>
   <div class="modal-mask">
-    <loading
+    <Loading
       :active.sync="isLoading"
       :can-cancel="true"
       :color="'blue'"
       :opacity="0.7"
       :is-full-page="true"
-    ></loading>
+    ></Loading>
     <div class="modal-wrapper">
       <div class="modal-container">
         <div class="modal-header">

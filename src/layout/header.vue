@@ -11,12 +11,14 @@
             >
               <i class="fa fa-bell"></i>
               <span>Thông báo</span>
+              <span class="badge" v-if="numOfNotice">{{
+                numOfNotice > 5 ? "5+" : numOfNotice
+              }}</span>
             </li>
           </router-link>
           <router-link :to="{ name: 'chat' }" style="color: #fff">
             <li :class="{ active: uri == '/chat' }" @click="uri = '/chat'">
               <i class="fa fa-comments"></i>
-
               <span>Trò chuyện</span>
             </li>
           </router-link>
@@ -61,10 +63,10 @@
     </div>
     <div class="menu-list">
       <ul id="menu-content" class="menu-content collapse out">
-        <router-link :to="{ name: 'notification' }" style="color: #fff">
+        <router-link  :to="{ name: 'notification' }"  style="color: #fff">
           <li
             :class="{ active: uri == '/notification' }"
-            @click="uri = '/notification'"
+            @click="uri = '/notification'; $emit('seen-notice')"
             style="position: relative"
           >
             <div>

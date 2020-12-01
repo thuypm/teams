@@ -1,7 +1,7 @@
 <template>
   <div class="row">
     <div class="col-1custom" style="z-index: 999">
-      <Header :numOfNotice="numOfNotice" />
+      <Header :numOfNotice="numOfNotice" @seen-notice="numOfNotice=0" />
     </div>
     <div class="col-11custom">
       <router-view :socket="socket"></router-view>

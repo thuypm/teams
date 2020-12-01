@@ -13,9 +13,9 @@
 
 <script>
 
-import video from "./meeting/video";
-import chat from "./meeting/chat";
-import listUser from "./meeting/listUser";
+import video from "../../components/meeting/video";
+import chat from "../../components/meeting/chat";
+import listUser from "../../components/meeting/listUser";
 var io = require("socket.io-client");
 // import io from 'socket.io-client';
 var socket = io.connect("http://thuypm.tk:3000/meeting");

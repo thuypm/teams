@@ -1,14 +1,18 @@
 
 <template>
   <div id="app">
-    <router-view style="z-index: 12" />
+  
+      <router-view style="z-index: 12" />
   </div>
 </template>
 
 <script>
-
 export default {
   name: "App",
+  data (){
+    return {
+    }
+  }
 };
 </script>
 

@@ -16,10 +16,10 @@
 </template>
 <script>
 import axios from "axios";
-import SubmitModal from "./groupModal/SubmitModal";
-import ListEx from "./exercise/ListEx";
-import ListSubmit from "./exercise/ListSubmit";
-import Mark from "./exercise/Mark";
+import SubmitModal from "../../components/groupModal/SubmitModal";
+import ListEx from "../../components/exercise/ListEx";
+import ListSubmit from "../../components/exercise/ListSubmit";
+import Mark from "../../components/exercise/Mark";
 export default {
   components: {
     SubmitModal,
