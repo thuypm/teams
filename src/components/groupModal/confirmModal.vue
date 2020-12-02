@@ -1,15 +1,11 @@
 <template>
+  <transition name="modal-fade">
   <div class="modal-mask">
     <div class="modal-wrapper">
       <div class="modal-container">
         <div class="modal-header">
           <slot name="header"></slot>
         </div>
-        <!-- <div class="modal-body">
-                                <slot name="body">
-                               {{groupCodeJoin}}
-                                </slot>
-        </div>-->
         <div class="modal-body">
           <slot name="body">
             <H3 v-if="option==1">Bạn muốn rời nhóm <b>{{group.name}}</b>  ?</H3>
@@ -25,6 +21,7 @@
       </div>
     </div>
   </div>
+  </transition>
 </template>
 
 <script>

@@ -50,7 +50,7 @@
             >
               <td>
                 <a
-                  :href="'http://localhost:3000/' + subm.file"
+                  :href="process.env.API_HOST + subm.file"
                   target="_blank"
                   >{{ subm.file | showFile() }}</a
                 >

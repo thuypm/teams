@@ -18,7 +18,7 @@ import chat from "../../components/meeting/chat";
 import listUser from "../../components/meeting/listUser";
 var io = require("socket.io-client");
 // import io from 'socket.io-client';
-var socket = io.connect("http://thuypm.tk:3000/meeting");
+var socket = io.connect(process.env.API_HOST+"meeting");
 export default {
   name: "index",
   components: {
@@ -27,7 +27,6 @@ export default {
     ListUser: listUser
   },
   created() {
-    console.log(this.$route.params.id);
     this.socket.emit("join", this.username, this.$route.params.id);
     this.socket.on("room-not-found", () => {
       alert("có lỗi xảy ra hoặc phòng không còn tồn tại");

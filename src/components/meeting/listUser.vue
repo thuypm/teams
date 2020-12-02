@@ -14,7 +14,7 @@
         <div class="d-flex bd-highlight">
           <div class="img_cont">
             <img
-              v-bind:src="'http://thuypm.tk:3000/user/'+usr+'.jpg'"
+              v-bind:src="API_HOST+'/user/'+usr+'.jpg'"
               class="rounded-circle user_img"
             />
             <!-- <span class="online_icon"></span> -->
@@ -45,6 +45,7 @@ export default {
   props: ["roomId"],
   data() {
     return {
+      API_HOST: process.env.API_HOST,
       axiosConfig: {
         headers: {
           "Content-Type": "application/json;charset=UTF-8",
@@ -68,7 +69,7 @@ export default {
     loadData() {
       axios
         .post(
-          "http://thuypm.tk:3000/room/getRoom",
+          process.env.API_HOST+"room/getRoom",
           { roomId: this.roomId },
           this.axiosConfig
         )
@@ -101,7 +102,7 @@ export default {
         members: [user]
       };
       axios
-        .post("http://thuypm.tk:3000/room/editRoom", upLen, this.axiosConfig)
+        .post(process.env.API_HOST+"room/editRoom", upLen, this.axiosConfig)
         .then(res => {
 			if(res.data)
 				{

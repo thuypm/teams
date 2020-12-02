@@ -6,7 +6,7 @@
 </template>
 <script>
 import io from 'socket.io-client';
-var socket = io.connect('http://localhost:3000');
+var socket = io.connect(process.env.API_HOST);
 export default {
      name: "index",
      data() {

@@ -85,7 +85,7 @@ export default {
 
         return false;
       }
-      axios.post("http://thuypm.tk:3000/signin", this.formData).then(res => {
+      axios.post(process.env.API_HOST+"signin", this.formData).then(res => {
         if (!res.data) {
           this.messErr = "Tên tài khoản hoặc mật khẩu không đúng";
           this.error = true;

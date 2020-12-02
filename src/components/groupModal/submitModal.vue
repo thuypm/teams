@@ -2,49 +2,53 @@
 @import "./modal.css";
 </style>
 <template>
-  <div class="modal-mask">
-    <Loading
-      :active.sync="isLoading"
-      :can-cancel="true"
-      :color="'blue'"
-      :opacity="0.7"
-      :is-full-page="true"
-    ></Loading>
-    <div class="modal-wrapper">
-      <div class="modal-container">
-        <div class="modal-header">
-          <div name="header" style="width: 100%">
-            <p class="input-title">Nộp bài</p>
-          </div>
-        </div>
-        <div class="modal-body">
-          <slot name="body">
-            <div>
-              <input
-                type="file"
-                class="form-data"
-                style="width: 100%"
-                placeholder="upload file"
-                @change="filesChange($event.target)"
-              />
+  <transition name="modal-fade">
+    <div class="modal-mask">
+      <Loading
+        :active.sync="isLoading"
+        :can-cancel="true"
+        :color="'blue'"
+        :opacity="0.7"
+        :is-full-page="true"
+      ></Loading>
+      <div class="modal-wrapper">
+        <div class="modal-container">
+          <div class="modal-header">
+            <div name="header" style="width: 100%">
+              <p class="input-title">Nộp bài</p>
             </div>
-            <hr />
-            <p v-if="err" style="text-align: left; color: red">
-              <i class="fa fa-exclamation-triangle" style=""></i> {{ err }}
-            </p>
-          </slot>
-        </div>
-        <div class="modal-footer">
-          <slot name="footer">
-            <button id="cls" class="btn btn-dark" @click="$emit('close')">
-              Đóng
-            </button>
-            <button class="btn btn-primary" @click="submit()">Xác nhận</button>
-          </slot>
+          </div>
+          <div class="modal-body">
+            <slot name="body">
+              <div>
+                <input
+                  type="file"
+                  class="form-data"
+                  style="width: 100%"
+                  placeholder="upload file"
+                  @change="filesChange($event.target)"
+                />
+              </div>
+              <hr />
+              <p v-if="err" style="text-align: left; color: red">
+                <i class="fa fa-exclamation-triangle" style=""></i> {{ err }}
+              </p>
+            </slot>
+          </div>
+          <div class="modal-footer">
+            <slot name="footer">
+              <button id="cls" class="btn btn-dark" @click="$emit('close')">
+                Đóng
+              </button>
+              <button class="btn btn-primary" @click="submit()">
+                Xác nhận
+              </button>
+            </slot>
+          </div>
         </div>
       </div>
     </div>
-  </div>
+  </transition>
 </template>
 <script>
 import axios from "axios";
@@ -81,7 +85,7 @@ export default {
       formData.append("submit", this.file);
       this.isLoading = true;
       axios
-        .post("http://thuypm.tk:3000/ex/submit", formData, this.axiosConfig)
+        .post(process.env.API_HOST+"ex/submit", formData, this.axiosConfig)
         .then((res) => {
           this.isLoading = false;
           this.$emit("submit-success", res.data);

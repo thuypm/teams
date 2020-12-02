@@ -43,6 +43,7 @@ export default {
   },
   data() {
     return {
+
       showNotice: "",
       createEx: false,
       axiosConfig: {
@@ -71,7 +72,7 @@ export default {
       this.selectedSubmit=null;
       axios
         .post(
-          "http://thuypm.tk:3000/ex/getEX",
+          process.env.API_HOST+"ex/getEX",
           {
             _id: ex.exId,
             username: this.username,
@@ -88,7 +89,7 @@ export default {
       data.roomId = this.$route.params.id;
       if (data.exId) {
         axios
-          .post("http://thuypm.tk:3000/ex/updateEx", data, this.axiosConfig)
+          .post(process.env.API_HOST+"ex/updateEx", data, this.axiosConfig)
           .then((res) => {
             var id = this.listEx.findIndex((val) => {
               val.exId == data;
@@ -97,7 +98,7 @@ export default {
           });
       } else {
         axios
-          .post("http://thuypm.tk:3000/ex/addEx", data, this.axiosConfig)
+          .post(process.env.API_HOST+"ex/addEx", data, this.axiosConfig)
           .then((res) => {
             this.listEx.push(res.data);
           });
@@ -106,7 +107,7 @@ export default {
     loadData() {
       axios
         .post(
-          "http://thuypm.tk:3000/ex/getAllEx",
+          process.env.API_HOST+"ex/getAllEx",
           { _id: this.$route.params.id },
           this.axiosConfig
         )

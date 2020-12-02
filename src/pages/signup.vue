@@ -110,7 +110,7 @@ export default {
       }
 
       axios
-        .post("http://thuypm.tk:3000/signup", {
+        .post(process.env.API_HOST+"signup", {
           username: this.formData.username,
           password: this.formData.password,
           name: this.formData.name

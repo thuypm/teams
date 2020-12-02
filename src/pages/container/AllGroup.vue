@@ -49,10 +49,10 @@
             </button>
           </div>
           <div> 
-            <!-- :src="'http://thuypm.tk:3000/room/'+group._id+'/'+group._id+'.jpg'" -->
+            <!-- :src="API_HOST+'room/'+group._id+'/'+group._id+'.jpg'" -->
             <img
               class="card-img-top"
-             :src="'http://thuypm.tk:3000/room/unknown.jpg'"
+             :src="API_HOST+'room/unknown.jpg'"
               alt="Card image cap"
             />
             <!-- <div class="upImg" @click="upImg(group, index)">
@@ -84,17 +84,19 @@
 import editGroup from "../../components/groupModal/editGroup";
 import axios from "axios";
 import confirmModal from "../../components/groupModal/confirmModal";
-import topNotice from "../../components/notice/topNotice";
+import TopNotice from "../../components/notice/TopNotice";
 
+const API_HOST= process.env.API_HOST;
 export default {
   components: {
     EditGroup: editGroup,
     Confirm: confirmModal,
-    TopNotice: topNotice,
+    TopNotice: TopNotice,
 
   },
   data() {
     return {
+      API_HOST: process.env.API_HOST,
       showNotice: "",
       axiosConfig: {
         headers: {
@@ -126,7 +128,7 @@ export default {
    }
   // upLen.action = this.delOption +1;
          axios
-        .post("http://thuypm.tk:3000/room/editRoom", upLen, this.axiosConfig)
+        .post(process.env.API_HOST+"room/editRoom", upLen, this.axiosConfig)
         .then(res => {
           if (!res.data) {
             this.Notice("Có lỗi xảy ra, vui lòng thử lại sau");
@@ -158,7 +160,7 @@ export default {
         return;
       }
       axios
-        .post("http://thuypm.tk:3000/room/editRoom", upLen, this.axiosConfig)
+        .post(process.env.API_HOST+"/room/editRoom", upLen, this.axiosConfig)
         .then(res => {
           if (!res.data) {
             this.Notice("Không tìm thấy nhóm này");
@@ -178,7 +180,7 @@ export default {
     loadData() {
       axios
         .post(
-          "http://thuypm.tk:3000/user/getAllMeeting",
+          process.env.API_HOST+"user/getAllMeeting",
           { username: this.username },
           this.axiosConfig
         )
@@ -190,6 +192,7 @@ export default {
 };
 </script>
 <style scoped>
+
 .upImg:hover {
   cursor: pointer;
   opacity: 1;

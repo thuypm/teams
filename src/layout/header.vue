@@ -187,7 +187,7 @@ export default {
     });
   },
   created() {
-    this.avatar = "http://thuypm.tk:3000/user/" + this.username + ".jpg";
+    this.avatar = process.env.API_HOST+"user/" + this.username + ".jpg";
   },
   methods: {
     imgChange(event) {
@@ -198,7 +198,7 @@ export default {
       formData.append("avatar", input);
       formData.append("username", this.username);
       axios
-        .post("http://thuypm.tk:3000/user/avatar", formData, this.axiosConfig)
+        .post(process.env.API_HOST+"user/avatar", formData, this.axiosConfig)
         .then((res) => {
           reader.readAsDataURL(input);
           reader.onload = (e) => {

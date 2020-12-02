@@ -13,14 +13,14 @@
 </template>
 <script>
 var io = require("socket.io-client");
-var socket = io.connect("http://thuypm.tk:3000/");
+var socket = io.connect(process.env.API_HOST);
 import axios from 'axios';
 import header from "../layout/header";
-import bottomNotice from "../components/notice/bottomNotice";
+import BottomNotice from "../components/notice/BottomNotice";
 export default {
   components: {
     Header: header,
-    BottomNotice: bottomNotice,
+    BottomNotice: BottomNotice,
   },
   data() {
     return {
@@ -49,7 +49,7 @@ export default {
   created() {
      axios
       .post(
-        "http://thuypm.tk:3000/user/getUser",
+        process.env.API_HOST+"user/getUser",
         { username: this.username },
         this.axiosConfig
       )

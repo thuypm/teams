@@ -4,14 +4,14 @@
       <div v-for="(message, index) in listMess" :key="index">
         <div class="d-flex justify-content-end mb-4" v-if="message.sender == username">
           <div v-if="message.type=='data:image'" class="msg_cotainer_send">
-           <a :href="'http://thuypm.tk:3000/'+ message.content" target="_blank">
-            <img :src="'http://thuypm.tk:3000/'+ message.content" style="max-width:160px" alt />
+           <a :href="process.env.API_HOST+ message.content" target="_blank">
+            <img :src="process.env.API_HOST+ message.content" style="max-width:160px" alt />
            </a>
             <span class="msg_time_send">{{message.time| DAY()}}</span>
           </div>
           <div v-else class="msg_cotainer_send">
             <a
-              :href="'http://thuypm.tk:3000/'+ message.content"
+              :href="process.env.API_HOST+ message.content"
               v-if="message.type!='text'"
               target="_blank"
             >
@@ -23,7 +23,7 @@
           </div>
           <div class="img_cont_msg">
             <img
-              v-bind:src="'http://thuypm.tk:3000/user/' + message.sender +'.jpg'"
+              v-bind:src="API_HOST+'user/' + message.sender +'.jpg'"
               class="rounded-circle user_img_msg"
             />
           </div>
@@ -31,19 +31,19 @@
         <div class="d-flex justify-content-start mb-4" v-else>
           <div class="t_mimg_consg">
             <img
-              v-bind:src="'http://thuypm.tk:3000/user/' + message.sender +'.jpg'"
+              v-bind:src="API_HOST+'user/' + message.sender +'.jpg'"
               class="rounded-circle user_img_msg"
             />
           </div>
           <div v-if="message.type=='data:image'" class="msg_cotainer">
-            <a :href="'http://thuypm.tk:3000/'+ message.content" target="_blank">
-            <img :src="'http://thuypm.tk:3000/'+ message.content" style="max-width:160px" alt />
+            <a :href="process.env.API_HOST+ message.content" target="_blank">
+            <img :src="process.env.API_HOST+ message.content" style="max-width:160px" alt />
             </a>
             <span class="msg_time">{{message.time| DAY()}}</span>
           </div>
           <div v-else class="msg_cotainer">
             <a
-              :href="'http://thuypm.tk:3000/'+ message.content"
+              :href="process.env.API_HOST+ message.content"
               v-if="message.type!='text'"
               target="_blank"
             >
@@ -113,7 +113,7 @@
 <script>
 import axios from "axios";
 // import io from 'socket.io-client';
-// var socket = io.connect('http://thuypm.tk:3000');
+// var socket = io.connect(API_HOST+':3000');
 var timeout;
 export default {
   props: ["roomId", "socket"],

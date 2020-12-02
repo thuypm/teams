@@ -167,7 +167,7 @@ export default {
     loadData() {
       axios
         .post(
-          "http://thuypm.tk:3000/user/getAllMeeting",
+          process.env.API_HOST+"user/getAllMeeting",
           { username: this.username },
           this.axiosConfig
         )

@@ -63,7 +63,7 @@ export default {
       // console.log(ex.exId)
       axios
         .post(
-          "http://thuypm.tk:3000/ex/getEX",
+          process.env.API_HOST+"ex/getEX",
           { _id: ex.exId, username: this.username, roomId: this.$route.params.id},
           this.axiosConfig
         )
@@ -76,7 +76,7 @@ export default {
       data.roomId = this.$route.params.id;
       if (data.exId) {
         axios
-          .post("http://thuypm.tk:3000/ex/updateEx", data, this.axiosConfig)
+          .post(process.env.API_HOST+"ex/updateEx", data, this.axiosConfig)
           .then((res) => {
             console.log(res);
             var id = this.listEx.findIndex((val) => {
@@ -86,7 +86,7 @@ export default {
           });
       } else {
         axios
-          .post("http://thuypm.tk:3000/ex/addEx", data, this.axiosConfig)
+          .post(process.env.API_HOST+"ex/addEx", data, this.axiosConfig)
           .then((res) => {
             this.listEx.push(res.data);
           });
@@ -95,7 +95,7 @@ export default {
     loadData() {
       axios
         .post(
-          "http://thuypm.tk:3000/ex/getAllEx",
+          process.env.API_HOST+"ex/getAllEx",
           { _id: this.$route.params.id },
           this.axiosConfig
         )
