@@ -4,5 +4,5 @@ const prodEnv = require('./prod.env')
 
 module.exports = merge(prodEnv, {
   NODE_ENV: '"development"',
-  API_HOST: 'process.env.API_HOST+""'
+  API_HOST: '"http://thuypm.tk:3000/"'
 })
