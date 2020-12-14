@@ -1,72 +1,80 @@
 <template>
   <div class="nav-side-menu">
     <div class="brand">TEAMS</div>
+
     <div class="menu-drop">
-      <div class="menu-list-drop" style="display: none">
-        <ul>
-          <router-link :to="{ name: 'notification' }" style="color: #fff">
-            <li
-              :class="{ active: uri == '/notification' }"
-              @click="uri = '/notification'"
-            >
-              <i class="fa fa-bell"></i>
-              <span>Thông báo</span>
-              <span class="badge" v-if="numOfNotice">{{
-                numOfNotice > 5 ? "5+" : numOfNotice
-              }}</span>
-            </li>
-          </router-link>
-          <router-link :to="{ name: 'chat' }" style="color: #fff">
-            <li :class="{ active: uri == '/chat' }" @click="uri = '/chat'">
-              <i class="fa fa-comments"></i>
-              <span>Trò chuyện</span>
-            </li>
-          </router-link>
-          <router-link :to="{ name: 'allGroup' }" style="color: #fff">
-            <li
-              :class="{
-                active:
-                  uri == '/allGroup' ||
-                  uri == '/' ||
-                  uri.indexOf('meeting') != -1,
-              }"
-              @click="uri = '/allGroup'"
-            >
-              <i class="fa fa-users"></i>
-              <span>&nbsp; Nhóm &nbsp;</span>
-            </li>
-          </router-link>
-          <router-link :to="{ name: 'file' }" style="color: #fff">
-            <li :class="{ active: uri == '/file' }" @click="uri = '/file'">
-              <i class="fa fa-file"></i>
+        <transition name="modal-fade">
+        <div class="menu-list-drop" style="display: none">
+          
+          <ul>
+            <router-link :to="{ name: 'notification' }" style="color: #fff">
+              <li
+                :class="{ active: uri == '/notification' }"
+                @click="uri = '/notification'"
+              >
+                <i class="fa fa-bell"></i>
+                <span>Thông báo</span>
+                <span class="badge" v-if="numOfNotice">{{
+                  numOfNotice > 5 ? "5+" : numOfNotice
+                }}</span>
+              </li>
+            </router-link>
+            <router-link :to="{ name: 'chat' }" style="color: #fff">
+              <li :class="{ active: uri == '/chat' }" @click="uri = '/chat'">
+                <i class="fa fa-comments"></i>
+                <span>Trò chuyện</span>
+              </li>
+            </router-link>
+            <router-link :to="{ name: 'allGroup' }" style="color: #fff">
+              <li
+                :class="{
+                  active:
+                    uri == '/allGroup' ||
+                    uri == '/' ||
+                    uri.indexOf('meeting') != -1,
+                }"
+                @click="uri = '/allGroup'"
+              >
+                <i class="fa fa-users"></i>
+                <span>&nbsp; Nhóm &nbsp;</span>
+              </li>
+            </router-link>
+            <router-link :to="{ name: 'file' }" style="color: #fff">
+              <li :class="{ active: uri == '/file' }" @click="uri = '/file'">
+                <i class="fa fa-file"></i>
 
-              <span>&nbsp; &nbsp; &nbsp; Tệp &nbsp; &nbsp;</span>
-            </li>
-          </router-link>
-          <router-link :to="{ name: 'exercise' }" style="color: #fff">
-            <li
-              :class="{
-                active: uri.indexOf('ex') != -1,
-              }"
-              @click="uri = '/ex'"
-            >
-              <i class="fa fa-book"></i>
+                <span>&nbsp; &nbsp; &nbsp; Tệp &nbsp; &nbsp;</span>
+              </li>
+            </router-link>
+            <router-link :to="{ name: 'exercise' }" style="color: #fff">
+              <li
+                :class="{
+                  active: uri.indexOf('ex') != -1,
+                }"
+                @click="uri = '/ex'"
+              >
+                <i class="fa fa-book"></i>
 
-              <span>&nbsp; &nbsp; Bài tập &nbsp;</span>
-            </li>
-          </router-link>
-        </ul>
-      </div>
+                <span>&nbsp; &nbsp; Bài tập &nbsp;</span>
+              </li>
+            </router-link>
+          </ul>
+        </div>
+      </transition>
       <div id="drop-menu">
         <b style="font-size: 30px">...</b>
       </div>
     </div>
+
     <div class="menu-list">
       <ul id="menu-content" class="menu-content collapse out">
-        <router-link  :to="{ name: 'notification' }"  style="color: #fff">
+        <router-link :to="{ name: 'notification' }" style="color: #fff">
           <li
             :class="{ active: uri == '/notification' }"
-            @click="uri = '/notification'; $emit('seen-notice')"
+            @click="
+              uri = '/notification';
+              $emit('seen-notice');
+            "
             style="position: relative"
           >
             <div>
@@ -187,7 +195,7 @@ export default {
     });
   },
   created() {
-    this.avatar = process.env.API_HOST+"user/" + this.username + ".jpg";
+    this.avatar = process.env.API_HOST + "user/" + this.username + ".jpg";
   },
   methods: {
     imgChange(event) {
@@ -198,7 +206,7 @@ export default {
       formData.append("avatar", input);
       formData.append("username", this.username);
       axios
-        .post(process.env.API_HOST+"user/avatar", formData, this.axiosConfig)
+        .post(process.env.API_HOST + "user/avatar", formData, this.axiosConfig)
         .then((res) => {
           reader.readAsDataURL(input);
           reader.onload = (e) => {
@@ -388,6 +396,7 @@ ul a {
 } */
 .menu-drop {
   display: none;
+
 }
 @media (min-width: 767px) {
   .nav-side-menu .menu-list .menu-content {
@@ -405,6 +414,7 @@ ul a {
   }
   .menu-drop {
     display: block;
+
   }
 }
 </style>

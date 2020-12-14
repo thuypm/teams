@@ -7,7 +7,7 @@
         <h4 style="margin-bottom: 20px"><b>Thông báo của bạn</b></h4>
         <li v-for="(notice, id) in notification" :key="id" @click="gotoLink(notice.link)">
           
-          <img  v-bind:src="process.env.API_HOST+'/user/'+notice.from+'.jpg'"  class="rounded-circle" />
+          <img  v-bind:src="API_HOST+'/user/'+notice.from+'.jpg'"  class="rounded-circle" />
           
           <div class="info">
             <h4 class="title">{{ notice.content }} </h4>
@@ -34,6 +34,7 @@ export default {
   components: {},
   data() {
     return {
+      API_HOST: process.env.API_HOST,
       username: localStorage.username,
       axiosConfig: {
         headers: {

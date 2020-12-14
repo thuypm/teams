@@ -2,6 +2,7 @@
   @import './modal.css';
 </style>
 <template>
+<transition name="modal-fade">
   <div class="modal-mask">
     <div class="modal-wrapper">
       <div class="modal-container">
@@ -49,6 +50,7 @@
       </div>
     </div>
   </div>
+  </transition>
 </template>
 
 <script>

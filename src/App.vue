@@ -1,7 +1,7 @@
 
 <template>
   <div id="app">
-      <Loading
+      <!-- <Loading
         :active.sync="isLoading"
         :can-cancel="true"
         :color="'#66ff66'"
@@ -9,7 +9,7 @@
         :loader="'Bars'"
         :background-color="'black'"
         :is-full-page="true"
-      ></Loading>
+      ></Loading> -->
       <router-view style="z-index: 12" />
   </div>
 </template>

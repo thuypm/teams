@@ -89,7 +89,7 @@ export default {
     loadData() {
       axios
         .post(
-          process.env.API_HOST + "/user/getAllMeeting",
+          process.env.API_HOST + "user/getAllMeeting",
           { username: this.username },
           this.axiosConfig
         )

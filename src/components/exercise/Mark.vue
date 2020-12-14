@@ -4,7 +4,7 @@
       <b>Cho điểm, đánh giá</b>
     </h3>
     <div>
-      <form style="text-align: left" v-if="admin">
+      <form style="text-align: left" v-if="admin && selectedSubmit">
         <h5>Điểm số</h5>
         <input
           type="text"
@@ -24,7 +24,7 @@
         ></textarea>
         <button type="button" class="btn btn-success" @click="mark">Cập nhật</button>
       </form>
-      <div style="text-align: left" v-else>
+      <div style="text-align: left" v-if="!admin && selectedSubmit">
         <h5><b> Điểm số: </b>{{ selectedSubmit.point }}</h5>
         <hr />
         <h5 style="padding-top: 20px">

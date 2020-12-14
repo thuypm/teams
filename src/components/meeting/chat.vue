@@ -4,14 +4,14 @@
       <div v-for="(message, index) in listMess" :key="index">
         <div class="d-flex justify-content-end mb-4" v-if="message.sender == username">
           <div v-if="message.type=='data:image'" class="msg_cotainer_send">
-           <a :href="process.env.API_HOST+ message.content" target="_blank">
-            <img :src="process.env.API_HOST+ message.content" style="max-width:160px" alt />
+           <a :href="API_HOST+ message.content" target="_blank">
+            <img :src="API_HOST+ message.content" style="max-width:160px" alt />
            </a>
             <span class="msg_time_send">{{message.time| DAY()}}</span>
           </div>
           <div v-else class="msg_cotainer_send">
             <a
-              :href="process.env.API_HOST+ message.content"
+              :href="API_HOST+ message.content"
               v-if="message.type!='text'"
               target="_blank"
             >
@@ -36,14 +36,14 @@
             />
           </div>
           <div v-if="message.type=='data:image'" class="msg_cotainer">
-            <a :href="process.env.API_HOST+ message.content" target="_blank">
-            <img :src="process.env.API_HOST+ message.content" style="max-width:160px" alt />
+            <a :href="API_HOST+ message.content" target="_blank">
+            <img :src="API_HOST+ message.content" style="max-width:160px" alt />
             </a>
             <span class="msg_time">{{message.time| DAY()}}</span>
           </div>
           <div v-else class="msg_cotainer">
             <a
-              :href="process.env.API_HOST+ message.content"
+              :href="API_HOST+ message.content"
               v-if="message.type!='text'"
               target="_blank"
             >
@@ -53,10 +53,6 @@
             <p v-else>{{message.content}}</p>
             <span class="msg_time">{{message.time| DAY()}}</span>
           </div>
-          <!-- <div class="msg_cotainer">
-            {{message.content}}
-            <span class="msg_time">{{message.time| DAY()}}</span>
-          </div>-->
         </div>
       </div>
       <div v-show="typing">
@@ -121,6 +117,7 @@ export default {
   components: {},
   data() {
     return {
+      API_HOST: process.env.API_HOST,
       isActive: false,
       selectMessID: "",
       friends: [],
@@ -148,7 +145,6 @@ export default {
   },
   created() {
     this.loadData();
-
     this.socket.on("room-not-found", () => {
       alert("có lỗi xảy ra hoặc phòng không còn tồn tại");
       window.location.href = "/";
@@ -300,7 +296,7 @@ p {
   border: 1.5px solid #f5f6fa;
 }
 .msg_cotainer {
-  min-width: 85px;
+  min-width: 95px;
   margin-top: auto;
   margin-bottom: auto;
   margin-left: 10px;
@@ -310,7 +306,7 @@ p {
   position: relative;
 }
 .msg_cotainer_send {
-  min-width: 85px;
+  min-width: 95px;
   margin-top: auto;
   margin-bottom: auto;
   margin-right: 10px;
