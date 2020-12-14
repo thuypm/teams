@@ -2,7 +2,8 @@
   <div class="row">
     <!-- <button @click="getNotice()">click đi</button> -->
     <div :class="{'col-10custom': option, 'col-12custom': !option}">
-      <Video @changeOpt="option=$event" :socket="socket" :roomId="$route.params.id" />
+      <!-- <Video @changeOpt="option=$event" :socket="socket" :roomId="$route.params.id" /> -->
+    <MeetingScreen :socket="socket" :roomId="$route.params.id" @change-option="e=>option=e"/>
     </div>
     <div class="col-2custom">
       <Chat v-if="option==1" :socket="socket" :roomId="$route.params.id" />
@@ -12,18 +13,17 @@
 </template>
 
 <script>
-
+import MeetingScreen from "./Meeting/MeetingScreen";
 import video from "../../components/meeting/video";
 import chat from "../../components/meeting/chat";
 import listUser from "../../components/meeting/listUser";
 var io = require("socket.io-client");
-// import io from 'socket.io-client';
 var socket = io.connect(process.env.API_HOST+"meeting");
 export default {
   name: "index",
   components: {
+    MeetingScreen,
     Chat: chat,
-    Video: video,
     ListUser: listUser
   },
   created() {

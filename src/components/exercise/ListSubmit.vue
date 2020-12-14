@@ -50,7 +50,7 @@
             >
               <td>
                 <a
-                  :href="process.env.API_HOST + subm.file"
+                  :href="API_HOST + subm.file"
                   target="_blank"
                   >{{ subm.file | showFile() }}</a
                 >
@@ -93,6 +93,7 @@ export default {
   props: ["selectedEx", "allSubmission", "admin"],
   data(){
     return{
+       API_HOST: process.env.API_HOST,
       selectedId: -1,
     }
   },

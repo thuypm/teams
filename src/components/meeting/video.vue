@@ -6,10 +6,10 @@
 
       <div id="menuCall" style="z-index:2;">
         <span class="btn btn-success">30:20</span>
-        <button v-on:click="setVideo(!camera, micro)" type="button" class="btn mn btn-outline-dark">
+        <button v-on:click="(e) => $emit('set-video',!camera, micro)" type="button" class="btn mn btn-outline-dark">
           <i :class="{'fa-video': camera, 'fa-video-slash': !camera}" class="fa fa-lg"></i>
         </button>
-        <button v-on:click="setVideo(camera, !micro)" type="button" class="btn mn btn-outline-dark">
+        <button v-on:click="(e) => $emit('set-video',!camera, micro)" type="button" class="btn mn btn-outline-dark">
           <i :class="{'fa-microphone': micro, 'fa-microphone-slash': !micro}" class="fa fa-lg"></i>
         </button>
         <button @click="shareScreen" :disabled="!canShareScreen" type="button" class="btn mn btn-outline-dark" >
@@ -71,6 +71,7 @@ export default {
   name: "index",
   data() {
     return {
+      API_HOST: process.env.API_HOST,
       username: localStorage.username,
       listFriend: [],
       listCli: [],
