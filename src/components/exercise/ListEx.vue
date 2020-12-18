@@ -1,15 +1,23 @@
 <template>
   <div class="col-3">
-    <button @click="openDialog" v-if="admin" class="btn btn-outline-success">
-      <i class="fa fa-plus"></i> Thêm mới
-    </button>
     <div class="row-mid" style="min-height: 47%">
-      <h4 style class="title">
-        <b>
-          Bài tập hiện tại
-          <i class="fa fa-arrow-right"></i>
-        </b>
-      </h4>
+      <div class="head-title">
+        <span style="" class="title">
+          <b>
+            Bài tập hiện tại
+          </b>
+        </span>
+        <span class="right-btn">
+          <button
+            @click="openDialog"
+            v-if="admin"
+            class="btn btn-outline-success"
+          >
+            <i class="fa fa-plus"></i>
+            Thêm mới
+          </button>
+        </span>
+      </div>
       <div class="single category">
         <ul class="list-unstyled">
           <li
@@ -24,19 +32,18 @@
       </div>
     </div>
     <div class="row-mid">
-      <h4 class="title">
+      <p class="title">
         <b>
           Bài tập đã hết hạn
-          <i class="fa fa-arrow-right"></i>
         </b>
-      </h4>
+      </p>
       <div class="single category">
         <ul class="list-unstyled">
           <li
             v-for="(ex, id) in expiredEx"
             :key="id"
             @click="selectEx(ex, id, 2)"
-            :class="{ active: selectedId == id && selectedTime == 2}"
+            :class="{ active: selectedId == id && selectedTime == 2 }"
           >
             <a title="">{{ ex.name }}</a>
           </li>
@@ -56,16 +63,14 @@ export default {
     };
   },
   computed: {
-    availableEx: function()
-    {
-      var now = (new Date()).getTime();
-      return this.listEx.filter((item)=> item.deadline > now);
+    availableEx: function () {
+      var now = new Date().getTime();
+      return this.listEx.filter((item) => item.deadline > now);
     },
-    expiredEx: function()
-    {
-        var now = (new Date()).getTime();
-      return this.listEx.filter((item)=> item.deadline < now);
-    }
+    expiredEx: function () {
+      var now = new Date().getTime();
+      return this.listEx.filter((item) => item.deadline < now);
+    },
   },
   methods: {
     openDialog() {
@@ -73,19 +78,27 @@ export default {
     },
     selectEx(ex, id, opts) {
       this.selectedId = id;
-      this.selectedTime = opts
+      this.selectedTime = opts;
       this.$emit("selectEx", ex, id);
     },
   },
 };
 </script>
 <style scoped>
+.right-btn{
+    position: absolute; right: 0px;
+}
+.head-title{
+  text-align: left;
+  margin-bottom: 15px
+}
 .row-mid {
-  overflow-y: scroll;
+  overflow-y: auto;
+  height: 50%;
 }
 .title {
-  background: #2c3e50;
-  color: white;
+  text-align: left;
+  color: black;
   padding: 5px;
 }
 .single ul {
@@ -105,7 +118,7 @@ export default {
   cursor: pointer;
 }
 .single li {
-  border-bottom: 1px solid rgb(189, 185, 185);
+  border-top: 1px solid rgb(189, 185, 185);
 }
 .active {
   background: #f0f0ff;

@@ -62,18 +62,18 @@
             delOption = 2;
             indexDel = index;
           "
-          style="position: absolute; right: 0"
+          class="group-option"
         >
-          <button class="btn btn-outline-danger">
-            <i class="fa fa-trash"></i>
-          </button>
+          <!-- <button class="btn btn-outline-danger"> -->
+            <i class="fas fa-bars"></i>
+          <!-- </button> -->
         </div>
-        <div>
-          <!-- :src="API_HOST+'room/'+group._id+'/'+group._id+'.jpg'" -->
+        <div class="card-img-div" >
           <img
-            class="card-img-top"
+            class="card-img-top rounded-circle"
             :src="API_HOST + 'room/unknown.jpg'"
             alt="Card image cap"
+
           />
           <!-- <div class="upImg" @click="upImg(group, index)">
               <label >
@@ -223,6 +223,16 @@ export default {
 };
 </script>
 <style scoped>
+.group-option{
+  position: absolute; right: 10px;
+}
+.group-option:hover{
+  cursor: pointer;
+}
+.card-img-div{
+padding:40px;
+background: #f3f2f1;
+}
 .upImg:hover {
   cursor: pointer;
   opacity: 1;
@@ -236,5 +246,10 @@ export default {
 }
 .card:hover {
   border: 2px solid #d19b3d;
+}
+.card-img-top {
+  width: 150px;
+  height: 150px;
+  object-fit:cover;
 }
 </style>

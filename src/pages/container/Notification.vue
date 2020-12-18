@@ -12,7 +12,7 @@
           <div class="info">
             <h4 class="title">{{ notice.content }} </h4>
             
-            <p class="desc">{{notice.time}}</p>
+            <p class="desc">{{notice.time | DAY()}}</p>
           </div>
           <div class="social">
             <ul>
@@ -62,6 +62,20 @@ export default {
         this.notification = res.data.notification;
       });
       
+  },
+    filters: {
+    DAY: function(time) {
+      var d = new Date();
+      var reTime = new Date(time);
+      var time = reTime.getHours() + ":" + reTime.getMinutes();
+      var day =
+        reTime.getDate() +
+        ",th " +
+        (reTime.getMonth() + 1) +
+        "," +
+        reTime.getFullYear();
+      return time + "  " + day;
+    }
   },
   beforeDestroy()
   {

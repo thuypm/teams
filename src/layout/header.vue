@@ -62,7 +62,7 @@
         </div>
       </transition>
       <div id="drop-menu">
-        <b style="font-size: 30px">...</b>
+        <b style="font-size: 30px"><i class="fas fa-bars"></i></b>
       </div>
     </div>
 
@@ -307,6 +307,7 @@ ul a {
 }
 #drop-menu {
   width: 77px;
+  padding-top: 15px;
   height: 75px;
 }
 /* .menu-drop #drop-menu:hover{

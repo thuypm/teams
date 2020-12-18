@@ -1,23 +1,23 @@
 <template>
-  <div class="col-7" style="text-align: left">
+  <div :class="{'col-7': selectedId != -1, 'col-9': selectedId == -1  }" style="text-align: left">
     <div class="">
-      <h3 style class="title">
+      <h5  class="title" style="margin: 7px 0 8px 0">
         <b> Danh sách bài nộp </b>
-      </h3>
+      </h5>
       <div class="list-ex">
         <div class="row" v-if="selectedEx.exId">
           <div class="col-6">
-            <h5>
+            <h6>
               Tên bài tập: <b>{{ selectedEx.name }}</b>
-            </h5>
+            </h6>
             <p>
               Mô tả <b>{{ selectedEx.description }}</b>
             </p>
           </div>
           <div class="col-6">
-            <h6>
+            <p>
               Hạn nộp: <b>{{ selectedEx.deadline | showTime }}</b>
-            </h6>
+            </p>
             <button class="btn btn-primary" @click="editEx" v-if="admin">
               <i class="fas fa-edit" aria-hidden="true"></i> Chỉnh sửa
             </button>
@@ -93,10 +93,15 @@ export default {
   props: ["selectedEx", "allSubmission", "admin"],
   data(){
     return{
-       API_HOST: process.env.API_HOST,
+      API_HOST: process.env.API_HOST,
       selectedId: -1,
     }
   },
+ watch:{
+   selectedEx: function (){
+      this.selectedId=-1;
+   }
+ },
   filters: {
     showTime: function (numberTime) {
       var d = new Date(numberTime);
@@ -132,7 +137,7 @@ export default {
 <style scoped>
 .list-ex {
   height: calc(100vh - 50px);
-  overflow-y: scroll;
+  overflow-y: auto;
 }
 .table-secondary,
 .table-secondary > td,

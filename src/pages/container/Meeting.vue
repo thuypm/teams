@@ -1,13 +1,21 @@
 <template>
   <div class="row">
     <!-- <button @click="getNotice()">click đi</button> -->
-    <div :class="{'col-10custom': option, 'col-12custom': !option}">
-      <!-- <Video @changeOpt="option=$event" :socket="socket" :roomId="$route.params.id" /> -->
-    <MeetingScreen :socket="socket" :roomId="$route.params.id" @change-option="e=>option=e"/>
+    <div :class="{ 'col-10custom': option, 'col-12custom': !option }">
+      <Video
+        @changeOpt="option = $event"
+        :socket="socket"
+        :roomId="$route.params.id"
+      />
+      <!-- <MeetingScreen :socket="socket" :roomId="$route.params.id" @change-option="e=>option=e"/> -->
     </div>
     <div class="col-2custom">
-      <Chat v-if="option==1" :socket="socket" :roomId="$route.params.id" />
-      <ListUser v-if="option==2" :socket="socket" :roomId="$route.params.id" />
+      <Chat v-if="option == 1" :socket="socket" :roomId="$route.params.id" />
+      <ListUser
+        v-if="option == 2"
+        :socket="socket"
+        :roomId="$route.params.id"
+      />
     </div>
   </div>
 </template>
@@ -18,13 +26,14 @@ import video from "../../components/meeting/video";
 import chat from "../../components/meeting/chat";
 import listUser from "../../components/meeting/listUser";
 var io = require("socket.io-client");
-var socket = io.connect(process.env.API_HOST+"meeting");
+var socket = io.connect(process.env.API_HOST + "meeting");
 export default {
   name: "index",
   components: {
     MeetingScreen,
     Chat: chat,
-    ListUser: listUser
+    ListUser: listUser,
+    Video: video,
   },
   created() {
     this.socket.emit("join", this.username, this.$route.params.id);
@@ -37,14 +46,18 @@ export default {
     return {
       option: 0,
       socket: socket,
-      username: localStorage.username
+      username: localStorage.username,
     };
   },
   methods: {
-    getNotice(){
-     this.socket.emit("test", "đây là nội dung thông báo", this.$route.params.id)
-    }
-  }
+    getNotice() {
+      this.socket.emit(
+        "test",
+        "đây là nội dung thông báo",
+        this.$route.params.id
+      );
+    },
+  },
 };
 </script>
 <style>

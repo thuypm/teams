@@ -8,8 +8,8 @@
         </div>
         <div class="modal-body">
           <slot name="body">
-            <H3 v-if="option==1">Bạn muốn rời nhóm <b>{{group.name}}</b>  ?</H3>
-            <H3 v-else>Bạn muốn xóa nhóm <b>{{group.name}}</b> ?</H3>
+            <H5 v-if="option==1">Bạn muốn rời nhóm <b>{{group.name}}</b>  ?</H5>
+            <H5 v-else>Bạn muốn xóa nhóm <b>{{group.name}}</b> ?</H5>
           </slot>
         </div>
         <div class="modal-footer">
@@ -46,8 +46,6 @@ export default {
                
              }
            }
-               
-
 }
      
 </script>

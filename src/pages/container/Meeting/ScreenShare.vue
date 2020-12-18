@@ -18,7 +18,7 @@
     <div id="menuCall" style="z-index: 2">
       <span class="btn btn-success">30:20</span>
       <button
-        v-on:click="setVideo(!camera, micro)"
+        v-on:click="$emit('set-video', !camera, micro)"
         type="button"
         class="btn mn btn-outline-dark"
       >
@@ -28,7 +28,7 @@
         ></i>
       </button>
       <button
-        v-on:click="setVideo(camera, !micro)"
+        v-on:click="$emit('set-video',camera, !micro)"
         type="button"
         class="btn mn btn-outline-dark"
       >
@@ -73,14 +73,12 @@
 </template>
 <script>
 export default {
-  props: ["roomId", "socket"],
+  props: ["roomId", "socket", "camera", "micro"],
   name: "index",
   data() {
     return {
       API_HOST: process.env.API_HOST,
       username: localStorage.username,
-      camera: false,
-      micro: false,
       chatOpt: 0,
       listOpt: 0,
       screen: null,

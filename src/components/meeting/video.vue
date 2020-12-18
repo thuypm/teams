@@ -6,10 +6,10 @@
 
       <div id="menuCall" style="z-index:2;">
         <span class="btn btn-success">30:20</span>
-        <button v-on:click="(e) => $emit('set-video',!camera, micro)" type="button" class="btn mn btn-outline-dark">
+        <button v-on:click="setVideo(!camera, micro)" type="button" class="btn mn btn-outline-dark">
           <i :class="{'fa-video': camera, 'fa-video-slash': !camera}" class="fa fa-lg"></i>
         </button>
-        <button v-on:click="(e) => $emit('set-video',!camera, micro)" type="button" class="btn mn btn-outline-dark">
+        <button v-on:click="setVideo(camera, !micro)" type="button" class="btn mn btn-outline-dark">
           <i :class="{'fa-microphone': micro, 'fa-microphone-slash': !micro}" class="fa fa-lg"></i>
         </button>
         <button @click="shareScreen" :disabled="!canShareScreen" type="button" class="btn mn btn-outline-dark" >
@@ -109,7 +109,6 @@ export default {
         this.listFriend.splice(vt2, 1);
         myPeer.splice(vt2, 1);
         peer.splice(vt2, 1);
-
       }
       var vt3 = this.listVideo.findIndex(e => e.Id == Id);
       if (vt3 != -1) {
@@ -128,7 +127,6 @@ export default {
         this.listCli.push({...usr});
         this.listFriend.push(usr);
          
-
         if (this.videoUser) {
           var tmp = myPeer.push(
             new Peer({
@@ -171,7 +169,6 @@ export default {
         });
       }
     });
-
     this.socket.on("res_video", (Id, tk) => {
       if (Id != this.socket.id) {
         var vt = this.listCli.findIndex(element => element.Id == Id);
@@ -198,7 +195,6 @@ export default {
         video: true,
         cursor: "always"
       });
-
       captureStream
         .then(stream => {
           var video = document.createElement("video");
@@ -291,7 +287,6 @@ export default {
  height: -moz-calc(100vh - 155px);
  height: -webkit-calc(100vh - 155px); 
 }
-
 .usr_img {
   margin-top: 10px;
   height:70px;

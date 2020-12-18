@@ -3,7 +3,11 @@
     <ScreenShare
       :socket="socket"
       :roomId="roomId"
+      :camera="camera"
+      :micro="micro"
       @change-option="(e) => $emit('change-option', e)"
+      @set-video="(camera, micro)=> setvideo(camera,micro)"
+
     />
     <div class="row flex-row">
       <div class="you vid">
@@ -32,6 +36,11 @@
 import Video from "./Video";
 import ScreenShare from "./ScreenShare";
 import SilentMember from "./SilentMember";
+
+var Peer = require("simple-peer");
+var myPeer = [];
+var peer = [];
+
 export default {
   components: {
     Video,
